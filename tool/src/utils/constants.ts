@@ -1,4 +1,4 @@
-export const APP_NAME = 'NLP Test Automation';
+export const APP_NAME = 'HAPPY TEST';
 export const APP_VERSION = '1.0.0';
 
 export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';

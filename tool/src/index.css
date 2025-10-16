@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+/* Custom dark mode variant (Tailwind v4 syntax) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Define color variables */
+:root {
+  /* Primary colors */
+  --color-primary: 59 130 246; /* blue-600 */
+  --color-primary-foreground: 255 255 255; /* white */
+  
+  /* Background colors */
+  --color-background: 255 255 255; /* white */
+  --color-foreground: 17 24 39; /* gray-900 */
+  
+  /* Secondary colors */
+  --color-secondary: 243 244 246; /* gray-100 */
+  --color-secondary-foreground: 17 24 39; /* gray-900 */
+  
+  /* Muted colors */
+  --color-muted: 243 244 246; /* gray-100 */
+  --color-muted-foreground: 107 114 128; /* gray-500 */
+  
+  /* Border colors */
+  --color-border: 229 231 235; /* gray-200 */
+}
+
+/* Dark mode colors */
+.dark {
+  --color-background: 17 24 39; /* gray-900 */
+  --color-foreground: 243 244 246; /* gray-100 */
+  --color-secondary: 31 41 55; /* gray-800 */
+  --color-secondary-foreground: 243 244 246; /* gray-100 */
+  --color-muted: 31 41 55; /* gray-800 */
+  --color-muted-foreground: 156 163 175; /* gray-400 */
+  --color-border: 55 65 81; /* gray-700 */
+}
+
+/* Base styles */
+body {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+* {
+  transition: background-color 150ms, color 150ms, border-color 150ms;
+}
