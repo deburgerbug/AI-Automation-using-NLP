@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Code2, Play, Zap, Shield, Rocket } from 'lucide-react';
 import { NLPInput } from './NLPInput';
-import { CodePreview } from './CodePreview';
+// import { CodePreview } from './CodePreview';
+import {CodePreviewMonaco} from './CodePreviewMonaco'
 import { Card, CardContent, CardHeader } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button';
 
@@ -120,7 +121,8 @@ test('Generated test from natural language', async ({ page }) => {
             </div>
           </CardHeader>
           <CardContent>
-            <CodePreview code={generatedCode} isGenerating={isGenerating} />
+            {/* <CodePreview code={generatedCode} isGenerating={isGenerating} /> */}
+            <CodePreviewMonaco  code={generatedCode} isGenerating={isGenerating} language='typescipt' />
           </CardContent>
         </Card>
       </div>
