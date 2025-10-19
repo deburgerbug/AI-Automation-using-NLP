@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Code2, Play, Zap, Shield, Rocket } from 'lucide-react';
 import { NLPInput } from './NLPInput';
 // import { CodePreview } from './CodePreview';
@@ -13,7 +14,10 @@ export function HomePage() {
   const [isExecuting, setIsExecuting] = useState(false);
 
   const handleGenerate = async () => {
-    if (!nlpInput.trim()) return;
+    if (!nlpInput.trim()){
+      toast.error('Please enter test description');
+      return;
+    }
 
     setIsGenerating(true);
 
@@ -44,9 +48,11 @@ test('Generated test from natural language', async ({ page }) => {
   await expect(page.locator('[data-testid="user-menu"]')).toBeVisible();
 });`;
       setGeneratedCode(mockCode)
+      toast.success('Code generated successfully');
     } catch (error) {
       console.error('Generation failed:', error)
-      alert('failed to generate code. Please try again.');
+      toast.error('Failed to generate code. Please try again');
+      // alert('failed to generate code. Please try again.'); // I am not using this now, hhaaha
     } finally {
       setIsGenerating(false);
     }
@@ -56,14 +62,18 @@ test('Generated test from natural language', async ({ page }) => {
     if (!generatedCode) return;
 
     setIsExecuting(true);
-
+    toast.info('Executing text...')
     try {
       //replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      alert('Test Executed SUCCEFULLY !!!')
+      await new Promise(resolve => setTimeout(resolve, 3000))
+      toast.success('Test executed successfully!',{
+        description: 'All assertion passed',
+      });
+      // alert('Test Executed SUCCEFULLY !!!')  ... don't cry alert bhai xD  :)
     } catch (error) {
       console.error('Execution failed', error);
-      alert('Test execution || failed ||')
+      toast.error('Test execution failed');
+      // alert('Test execution || failed ||')   not using this ,  alert() is SAD ;). sob .sob
     } finally {
       setIsExecuting(false)
     }
@@ -75,7 +85,8 @@ test('Generated test from natural language', async ({ page }) => {
     }
     setNlpInput('');
     setGeneratedCode('');
-  }
+    toast.info('Cleared all content')
+  };
   return (
     <div className='max w-7x, mx-auto soace y-8'>
       <div className='text-center space-y-4'>
